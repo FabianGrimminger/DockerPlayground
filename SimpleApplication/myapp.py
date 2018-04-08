@@ -21,7 +21,7 @@ def mainpage():
 		   "<b>OS:</b> {system} <br/>"\
            "<b>Visits:</b> {visits}<br/>" \
 		   "<b>Local Time:</b> {time}"
-    return html.format(name=os.getenv("NAME", "world"),system=os.getenv("OS", "dunno"), hostname=socket.gethostname(), visits=visits, time=ltime)
+    return html.format(name=os.getenv("NAME", "world"),system=os.getenv("OS", "Not Windows"), hostname=socket.gethostname(), visits=visits, time=ltime)
 	
 @app.route("/reset")
 def resetCounter():
