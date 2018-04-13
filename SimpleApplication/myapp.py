@@ -1,6 +1,7 @@
 from flask import Flask
 from redis import Redis, RedisError
 import os
+import signal
 import socket
 import time
 
@@ -33,5 +34,13 @@ def resetCounter():
 	
     return value
 
+@app.route("/shutdown")
+def shutdown():
+    os.kill(os.getpid(), signal.SIGTERM)
+
+@app.route("/crash")
+def crash():
+    exit()
+
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8080, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=os.getenv("DEBUG", False))
